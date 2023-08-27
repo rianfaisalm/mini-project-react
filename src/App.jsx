@@ -5,10 +5,12 @@ import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
 import { useRoutes } from "react-router";
 import "./App.css";
+import UserDetail from "./pages/Userdetail";
 
 const routes = [
   { path: "/", element: <Homepage /> },
   { path: "/login", element: <Login /> },
+  { path: "/detail/:userId", element: <UserDetail /> },
 ];
 
 function App() {
