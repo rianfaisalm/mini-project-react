@@ -1,18 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import Navbar from "../components/Navbar";
 
 const UserDetail = () => {
-  const [menu, setMenu] = useState({});
+  const [item, setItem] = useState({});
   const param = useParams();
 
   console.log(param.userId);
 
   const getMenu = () => {
     axios
-      .get(`https://api.mudoapi.tech/menu/${param?.userId}`)
+      .get(`https://reqres.in/api/users/${param?.userId}`)
       .then((res) => {
-        setMenu(res?.data?.data);
+        setItem(res?.data?.data);
       })
       .catch((err) => {
         console.log(err);
@@ -24,12 +25,14 @@ const UserDetail = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Halaman Detail</h1>
-      <h1>{menu?.name}</h1>
-      <p>{menu?.description}</p>
-      <img style={{ width: "200px" }} src={menu?.imageUrl} />
-    </div>
+    <>
+      <Navbar />
+      <div>
+        <img src={item.avatar} alt={`Avatar ${item.first_name}`} />
+        <h2>{item.first_name} {item.last_name}</h2>
+        <h3>Ini Email : {item?.email}</h3>
+      </div>
+    </>
   );
 };
 

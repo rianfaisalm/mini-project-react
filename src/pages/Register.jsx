@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 
-const Login = () => {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,12 +21,12 @@ const Login = () => {
     };
 
     axios
-      .post("https://reqres.in/api/login", payload)
+      .post("https://reqres.in/api/register", payload)
       .then((res) => {
         console.log(res);
       })
       .catch((err) => {
-        localStorage.setItem("token", "abcdefg");
+        localStorage.setItem("token", "12345");
         console.log(err);
       });
   };
@@ -35,16 +35,16 @@ const Login = () => {
   return (
     <>
       <Navbar />
-      <h1>Login</h1>
+      <h1>Register</h1>
       <div>
         <input onChange={handleChangeEmail} placeholder="email" />
         <input onChange={handleChangePass} placeholder="password" />
       </div>
       <div>
-        <button onClick={handleSubmit}>Login</button>
+        <button onClick={handleSubmit}>Register</button>
       </div>
     </>
   );
 };
 
-export default Login;
+export default Register;
